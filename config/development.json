@@ -1,0 +1,13 @@
+{
+  "app": {
+    "name": "datathonApp",
+    "port": 3000
+  },
+  "db":{
+    "url" : "mongodb://localhost:27017/datathon",
+    "port": "27017"
+  },
+  "prediction": {
+    "url": "http://localhost:8080"
+  }
+}
