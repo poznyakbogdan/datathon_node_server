@@ -34,5 +34,4 @@ router.post('/prediction', (req, res)=>{
     })
 });
 
-
 module.exports = router;

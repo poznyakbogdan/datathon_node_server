@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "homepage": "https://github.com/poznyakbogdan/datathon_node_server",
+  "authors": [
+    "bogdan <poznyak.pba@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
