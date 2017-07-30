@@ -3,34 +3,62 @@
 const request = require('request-promise');
 const config = require('config');
 const PREDICTION_API = config.get('prediction.url');
+const multReqJson = require('../reqData/multReq.json');
+const reqJson = require('../reqData/req.json');
+const _ = require('lodash');
+const CARD = 1026729;
 
-function getPrediction(mobileNumber, action) {
-  // return request({
-  //   method: "POST",
-  //   uri: `${PREDICTION_API}/prediction`,
-  //   body: {
-  //     mobileNumber: mobileNumber,
-  //     action: action
-  //   }
-  // })
-  return {
-    mobileNumber: mobileNumber,
-    action: action,
-    value: Math.random()
-  }
+function getLoyalty() {
+  return request({
+    method: "POST",
+    uri: `${PREDICTION_API}/loyalty`,
+    body: reqJson,
+    json: true
+  });
 }
 
-function getPredictions(data) {
-  return [{data: data, value: 1}, {data: data, value: 2}, {data: data, value: 3}]
+function getLoyalties(data) {
+  let req = data.map(() => {
+    return reqJson;
+  });
+  return request({
+    method: "POST",
+    uri: `${PREDICTION_API}/loyalties`,
+    body: req,
+    json: true
+  })
+}
 
-  // return request({
-  //   method: "POST",
-  //   uri: `${PREDICTION_API}/predictions`,
-  //   body: data
-  // })
+function getBalance() {
+  return request({
+    method: "POST",
+    uri: `${PREDICTION_API}/balance`,
+    body: {
+      day: new Date(new Date().getTime() + 1000*3600*48).getDate(),
+      card: CARD
+    },
+    json: true
+  });
+}
+
+function getBalances(data) {
+  let req = data.map(()=>{
+    return {
+      day: new Date(new Date().getTime() + 1000*3600*48).getDate(),
+      card: CARD
+    }
+  });
+  return request({
+    method: "POST",
+    uri: `${PREDICTION_API}/balances`,
+    body: req,
+    json: true
+  })
 }
 
 module.exports = {
-  getPrediction: getPrediction,
-  getPredictions: getPredictions
+  getLoyalty: getLoyalty,
+  getLoyalties: getLoyalties,
+  getBalance: getBalance,
+  getBalances: getBalances
 };

@@ -17,11 +17,11 @@ module.exports = server => {
       myEmitter.emit('checkUsersEvent');
     });
 
-		myEmitter.on('checkUsersEvent', () => {
-			checkUsers(res => {
-				client.broadcast.send(res);
-			})
-		});
+		// myEmitter.on('checkUsersEvent', () => {
+		// 	checkUsers(res => {
+		// 		client.broadcast.send(res);
+		// 	})
+		// });
 
 		client.on('disconnect', client => {
 			console.log('client disconnected');

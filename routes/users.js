@@ -21,15 +21,22 @@ router.post('/new', (req, res) => {
 });
 
 router.post('/prediction', (req, res)=>{
+  let result = {};
   return Promise.resolve()
     .then(()=>{
-      return User.findOne({androidId: req.body.user.androidId}, user=>{ return user });
+      return User.findOne({androidId: req.body.androidId}, user=>{ return user });
     })
     .then(user=>{
-      return Prediction.getPrediction(user, req.body.action);
+      result.androidId = user.androidId;
+      return Prediction.getLoyalty()
+    })
+    .then(data => {
+      result.loyalty = data.value;
+      return Prediction.getBalance()
     })
     .then(data=>{
-      res.json(data);
+      result.balance = data.value;
+      res.json(result);
     })
 });
 

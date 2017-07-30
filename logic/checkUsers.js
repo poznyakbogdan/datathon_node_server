@@ -9,7 +9,7 @@ module.exports = callback => {
   User.find({}, (err, users) => {
     let data = users.map(u => {
       return {
-        mobileNumber: u.mobileNumber,
+        // mobileNumber: u.mobileNumber,
         action: "balance"
       }
     });

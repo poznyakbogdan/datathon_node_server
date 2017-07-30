@@ -2,15 +2,25 @@
 
 const request = require('./request');
 
-function getPrediction(user, action) {
-  return request.getPrediction(user.mobileNumber, action)
+function getLoyalty() {
+  return request.getLoyalty()
 }
 
-function getPredictions(data) {
-  return request.getPredictions(data);
+function getLoyalties(data) {
+  return request.getLoyalties(data);
+}
+
+function getBalance() {
+  return request.getBalance()
+}
+
+function getBalances(data) {
+  return request.getBalances(data);
 }
 
 module.exports = {
-  getPrediction: getPrediction,
-  getPredictions: getPredictions
+  getLoyalty: getLoyalty,
+  getLoyalties: getLoyalties,
+  getBalance: getBalance,
+  getBalances: getBalances
 };
