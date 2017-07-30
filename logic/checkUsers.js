@@ -6,6 +6,7 @@ const request = require('./request');
 const myEmitter = require('./events');
 
 module.exports = callback => {
+  let result = [];
   User.find({}, (err, users) => {
     let data = users.map(u => {
       return {
@@ -15,7 +16,10 @@ module.exports = callback => {
     });
     return Promise.resolve()
       .then(()=>{
-        return request.getPredictions(data);
+        return request.getLoyalties(data);
+      })
+      .then(res=>{
+        return request.getBalances(data)
       })
       .then(res=>{
         callback(res);
