@@ -3,9 +3,10 @@
 let User = require('../models/User');
 const cronJob = require('./cronJobs');
 const request = require('./request');
+const myEmitter = require('./events');
 
-function checkUser() {
-  User.find({}, users => {
+module.exports = callback => {
+  User.find({}, (err, users) => {
     let data = users.map(u => {
       return {
         mobileNumber: u.mobileNumber,
@@ -17,9 +18,8 @@ function checkUser() {
         return request.getPredictions(data);
       })
       .then(res=>{
+        callback(res);
         console.log(res);
       })
-  })
+  });
 }
-
-// cronJob(checkUser);

@@ -1,4 +1,15 @@
-<div>
-    Login Page!
-    {{title}}
+<div class="container">
+    <div>
+        <form>
+            <div class="group">
+                <input type="number" required ng-model="mobileNumber">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Mobile number</label>
+            </div>
+            <button ng-click="signUpUser(mobileNumber)" class="btn btn-primary">
+                Start
+            </button>
+        </form>
+    </div>
 </div>

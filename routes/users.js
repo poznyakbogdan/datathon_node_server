@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  console.log(req);
   let user = new User({
     androidId: req.body.user.androidId,
     mobileNumber: req.body.user.mobileNumber,

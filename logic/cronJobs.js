@@ -3,5 +3,5 @@
 let CronJob = require('cron').CronJob;
 
 module.exports = recurrentFn => {
-  new CronJob('* * * * * *', recurrentFn, null, true, 'America/Los_Angeles');
+  new CronJob('00 * * * * *', recurrentFn, null, true, 'America/Los_Angeles');
 };
